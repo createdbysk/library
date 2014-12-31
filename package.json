@@ -1,0 +1,15 @@
+{
+  "name": "library",
+  "version": "0.0.1",
+  "description": "library of reusable components.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:satvidh/library.git"
+  },
+  "author": "Satish Kumar",
+  "license": "MIT"
+}

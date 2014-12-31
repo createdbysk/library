@@ -1,0 +1,1 @@
+This repository implements libraries for use by other projects. It will be npm compatible.

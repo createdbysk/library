@@ -1,5 +1,7 @@
 /**
  * Provides a requirejs injector based on Squire.
+ *
+ * This current implementation will NOT work if the client uses squirejs directly.
  */
 'use strict';
 var path,
@@ -18,15 +20,6 @@ createInjector = function () {
         baseUrl: path.resolve(__dirname, "../../.."),
         nodeRequire: require,
         packages: [
-            // If the client of this library has squirejs installed, then expect it under
-            // the node_modules on the client.
-            {
-                name: "squirejs",
-                location: "node_modules/squirejs",
-                main: "src/Squire"
-            },
-            // If the client of this library does not have squirejs installed, then expect it under
-            // the node_modules under library.
             {
                 name: "squirejs",
                 location: "node_modules/library/node_modules/squirejs",

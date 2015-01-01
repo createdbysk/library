@@ -15,10 +15,10 @@
   "dependencies": {
     "linq": "^3.0.4-beta",
     "readline": "0.0.5",
-    "requirejs": "^2.1.15"
+    "requirejs": "^2.1.15",
+    "squirejs": "^0.2.1"
   },
   "devDependencies": {
-    "mocha": "^2.1.0",
-    "squirejs": "^0.2.1"
+    "mocha": "^2.1.0"
   }
 }

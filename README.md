@@ -1,4 +1,7 @@
-This repository implements libraries for use by other projects. It will be npm compatible.
+This repository implements libraries for use by other projects. Install it with
+```
+npm install --save git+ssh://git@bitbucket.org:satvidh/library.git#0.0.1
+```
 
 library/test_utilities/requireInjector
 --------------------------------------

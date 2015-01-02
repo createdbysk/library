@@ -1,7 +1,10 @@
-var requirejs = require('requirejs');
+var requirejs,
+    path;
+requirejs = require('requirejs');
+path = require('path');
 
 requirejs.config({
-    baseUrl: __dirname,
+    baseUrl: path.resolve(__dirname, "../.."),
     nodeRequire: require
 });
 

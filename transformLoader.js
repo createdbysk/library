@@ -39,9 +39,9 @@ define(['requirejs', 'linq'], function (requirejs, linq) {
             return commander;
         },
         /**
-         * GIVEN a module configuration with the format {modules: [path to modules], names: [names to associate]}
+         * GIVEN a module configuration with the format {modules: [path to modules], names: [transformNames]}
          * WHEN you call transformLoader.moduleLoader
-         * THEN it should return [{name: moduleName, module: transform}]
+         * THEN it should callback with [{name: transformName, transform: loadedTransform}]
          * 
          * @param  {Object}   moduleConfiguration the module configuration as described in the GIVEN.
          * @param  {Function} callback            callback(err, result)

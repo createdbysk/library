@@ -13,7 +13,7 @@
 (function () {
     'use strict';
     var createStreamEnumerable;
-    createStreamEnumerable = require('../streamEnumerableCreator');
+    createStreamEnumerable = require('library/streamEnumerableCreator');
 
     createStreamEnumerable(process.stdin, function (err, streamEnumerable) {
         if (err) {

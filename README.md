@@ -3,6 +3,9 @@ This repository implements libraries for use by other projects. Install it with
 npm install --save git+ssh://git@github.com:satvidh/library.git#0.0.1
 ```
 
+# To test client perspective
+Use the integration_test directory to install the library and test it from a client perspective. 
+
 # library/test_utilities/requireInjector
 Provides requirejs injector support for tests. 
 NOTE: This module depends on squirejs. It will NOT work if the client has squirejs already installed. 

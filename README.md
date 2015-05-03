@@ -4,11 +4,11 @@ npm install --save git+ssh://git@github.com:satvidh/library.git#0.0.1
 ```
 
 # To test client perspective
-Use the integration_test directory to install the library and test it from a client perspective. 
+Use the integration_test directory to install the library and test it from a client perspective.
 
 # library/test_utilities/requireInjector
-Provides requirejs injector support for tests. 
-NOTE: This module depends on squirejs. It will NOT work if the client has squirejs already installed. 
+Provides requirejs injector support for tests.
+NOTE: This module depends on squirejs. It will NOT work if the client has squirejs already installed.
 
 # library/streamEnumerableCreator
 Creates a linqjs compatible enumerable that iterates over lines in the given file descriptor.
@@ -49,10 +49,10 @@ line2
 This module is designed to work with requirejs.
 var requirejs = require('requirejs');
 requirejs(['library/transformLoader'], function (transformLoader) {
-    ... Use transformLoader 
+    ... Use transformLoader
 });
 define(['library/transformLoader'], function (transformLoader) {
-    ... Use transformLoader 
+    ... Use transformLoader
 });
 
 ## Functions
@@ -72,7 +72,12 @@ define(['library/transformLoader'], function (transformLoader) {
          * GIVEN a module configuration with the format {modules: [path to modules], names: [names to associate]}
          * WHEN you call transformLoader.moduleLoader
          * THEN it should return [{name: moduleName, module: transform}]
-         * 
-         * @param  {Object}   moduleConfiguration the module configuration as described in the GIVEN.
+         *
+         * @param
+           {Object}   moduleConfiguration the module configuration as described in the GIVEN.
          * @param  {Function} callback            callback(err, result)
          */
+
+# library/jiraRest
+## Usage
+UNDER CONSTRUCTION.

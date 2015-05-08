@@ -1,31 +1,63 @@
-define(['utilities/validateAndThrow.js'], function (validate) {
-    'use strict';
-    var jiraRest,
-        jiraRestInstance,
-        search,
-        isRequired;
-    // Options to pass to validate() to check for presence of a property.
-    // validate will return the message if the required property is not present.
-    isRequired = {presence: {message: 'is required'}};
+define([
+    'utilities/validateAndThrow',
+    'request',
+    'configuration/pathAndQueryParams'
+    ],
+    function (validate, request, pathAndQueryParams) {
+        'use strict';
+        var jiraRest,
+            jiraRestInstance,
+            isRequired,
 
-    search = function () {
+        // Options to pass to validate() to check for presence of a property.
+        // validate will return the message if the required property is not present.
+        isRequired = {presence: {message: 'is required'}};
 
-    };
-    jiraRestInstance = {
-        search: search
-    };
-    /**
-     * Factory method that returns the jiraRestInstance given
-     * options.
-     *
-     * options must be an object with the following required and optional properties.
-     *
-     * required:
-     *  baseUrl -   The base url of the rest api call.
-     */
-    jiraRest = function (options) {
-        validate(options, {baseUrl: isRequired});
-        return jiraRestInstance;
-    };
-    return jiraRest;
-});
+        /**
+         * Factory method that returns the jiraRestInstance given
+         * options.
+         *
+         * options must be an object with the following required and optional properties.
+         *
+         * required:
+         *  baseUrl -   The base url of the rest api call.
+         */
+        jiraRest = function (options) {
+            var search;
+
+            validate(options, {baseUrl: isRequired});
+
+            search = function (query, callback) {
+                var url,
+                    requestOptions,
+                    requestCallback;
+                url = options.baseUrl + pathAndQueryParams.path + query + pathAndQueryParams.queryParams;
+                console.log(url);
+                requestOptions = {
+                    url: url,
+                    auth: {
+                        username: options.username,
+                        password: options.password
+                    },
+                    strictSSL: options.strictSSL
+                };
+                console.log("requestOptions", requestOptions);
+                requestCallback = function (err, response, body) {
+                    console.log("Callback", err, response, body);
+                    if (!err && response.statusCode === 200) {
+                        var results;
+                        results = JSON.parse(body);
+                        callback(err, results);
+                    }
+                };
+                console.log("request", request);
+                request(requestOptions, requestCallback);
+            };
+            jiraRestInstance = {
+                search: search
+            };
+            return jiraRestInstance;
+        };
+        return jiraRest;
+    }
+);

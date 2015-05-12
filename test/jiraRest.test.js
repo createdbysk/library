@@ -95,31 +95,15 @@ invoked with options',
             requestResults = {
                 "body": "result"
             };
-            matchRequestOptions = sinon.match(function (requestOptions) {
-                var result;
-                result = requestOptions.url === expectedRequestOptions.url
-                && requestOptions.auth.username === expectedRequestOptions.auth.username
-                && requestOptions.auth.password === expectedRequestOptions.auth.password
-                && requestOptions.strictSSL === expectedRequestOptions.strictSSL;
-                console.log("Passed requestOptions", requestOptions, result);
-                return result;
-            }, 'requestOptions');
-            matchCallback = sinon.match(function (callback) {
-                console.log("callback", callback);
-                return typeof callback === 'function';
-            }, 'callback');
             request
-                .withArgs(matchRequestOptions, matchCallback)
+                .withArgs(expectedRequestOptions, sinon.match.typeOf('function'))
                 .callsArgWith(1, null, requestResponse, JSON.stringify(requestResults));
             jiraRestInstance = jiraRest(options);
-            console.log("expected requestOptions", expectedRequestOptions);
             jiraRestInstance.search('project%3Dmine', function (err, results) {
                 expect(err).not.to.be.ok();
                 expect(results).to.eql(requestResults);
                 done();
             });
-            //sinon.assert.calledWith(request, matchRequestOptions, matchCallback);
-            //done();
         }
     );
 });

@@ -1,6 +1,6 @@
 {
   "name": "integration_test",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Use this directory to test the library from a client perspective",
   "main": " ",
   "scripts": {
@@ -9,7 +9,8 @@
   "author": "Satish Kumar",
   "license": "ISC",
   "dependencies": {
-    "library": "0.0.1"
+    "commander": "^2.8.1",
+    "library": "../../library"
   },
   "devDependencies": {}
 }

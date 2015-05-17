@@ -12,7 +12,8 @@ define(['linq'], function (linq) {
     transformer = function (input, transforms, callback) {
         var applyTransforms,
             transformsArray,
-            transformName;
+            transformName,
+            results;
         // linq.from does not work if the value in the object is a function.
         // Therefore, transform the object into an array.
         transformsArray = [];
@@ -38,6 +39,9 @@ define(['linq'], function (linq) {
                         .aggregate({},
                             function (combination, transform) {
                                 transform.fn(input, function (err, result) {
+                                    if (err) {
+                                        throw err;
+                                    }
                                     combination[transform.name] =
                                         (result instanceof linq) ? result.toArray() : result;
                                 });
@@ -46,7 +50,13 @@ define(['linq'], function (linq) {
                         );
                 return results;
             };
-        callback(null, applyTransforms(input));
+        try {
+            results = applyTransforms(input);
+            callback(null, results);
+        }
+        catch (err) {
+            callback(err, undefined);
+        }
     };
 
     return transformer;

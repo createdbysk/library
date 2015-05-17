@@ -55,4 +55,26 @@ describe('issue report generator', function () {
             });
         }
     );
+    it('should apply the given transforms and callback with an error if any of the transforms fail with an error.',
+        function (done) {
+            var input,
+                transform1,
+                transforms,
+                results,
+                error;
+            input = 'input';
+            error = 'error';
+            transform1 = sinon.stub();
+            transform1.withArgs(input, sinon.match.typeOf('function'))
+                      .callsArgWith(1, error, undefined);
+            transforms = {
+                transform1: transform1,
+            };
+            transformer(input, transforms, function (err, results) {
+                expect(results).to.be(undefined);
+                expect(err).to.eql(error);
+                done();
+            });
+        }
+    );
 });

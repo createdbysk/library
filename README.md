@@ -69,15 +69,24 @@ define(['library/transformLoader'], function (transformLoader) {
 
 ### transformLoader.loadModules
         /**
-         * GIVEN a module configuration with the format {modules: [path to modules], names: [names to associate]}
+         * GIVEN a module configuration with the format {modules: [path to modules], names: [transform names to associate]}
          * WHEN you call transformLoader.moduleLoader
-         * THEN it should return {moduleName1: transform1, moduleName2: transform2}
+         * THEN it should return
+         * {transformName1: transformFunction1, transformName2: transformFunction2, ...}
          *
          * @param
            {Object}   moduleConfiguration the module configuration as described in the GIVEN.
          * @param  {Function} callback            callback(err, result)
          */
 
+### transformer
+        /**
+         * GIVEN a collection of transforms in the form
+         * {transformName1: transformFunction1, transformName2: transformFunction2, ...}
+         * and an input value
+         * WHEN you call transformer(input, transforms, callback)
+         * THEN it will call the callback with
+         * (err, {transformName1: result1, transformName2: result2, ...})
 # library/jiraRest
 ## Usage
 UNDER CONSTRUCTION.

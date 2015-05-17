@@ -7,7 +7,9 @@ requirejs.config({
     baseUrl: path.resolve(__dirname, "../.."),
     nodeRequire: require,
     paths : {
-        'library': 'node_modules/library'
+        'library': 'node_modules/library',
+        'configuration': 'node_modules/library/configuration',
+        'utilities': 'node_modules/library/utilities'
     }
 });
 

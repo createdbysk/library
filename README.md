@@ -71,7 +71,7 @@ define(['library/transformLoader'], function (transformLoader) {
         /**
          * GIVEN a module configuration with the format {modules: [path to modules], names: [names to associate]}
          * WHEN you call transformLoader.moduleLoader
-         * THEN it should return [{name: moduleName, module: transform}]
+         * THEN it should return {moduleName1: transform1, moduleName2: transform2}
          *
          * @param
            {Object}   moduleConfiguration the module configuration as described in the GIVEN.

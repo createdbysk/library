@@ -32,7 +32,6 @@ define([
                     requestOptions,
                     requestCallback;
                 url = options.baseUrl + pathAndQueryParams.path + query + pathAndQueryParams.queryParams;
-                console.log(url);
                 requestOptions = {
                     url: url,
                     auth: {
@@ -41,16 +40,13 @@ define([
                     },
                     strictSSL: options.strictSSL
                 };
-                console.log("requestOptions", requestOptions);
                 requestCallback = function (err, response, body) {
-                    console.log("Callback", err, response, body);
                     if (!err && response.statusCode === 200) {
                         var results;
                         results = JSON.parse(body);
                         callback(err, results);
                     }
                 };
-                console.log("request", request);
                 request(requestOptions, requestCallback);
             };
             jiraRestInstance = {

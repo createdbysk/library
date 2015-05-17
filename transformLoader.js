@@ -42,7 +42,7 @@ define(['requirejs', 'linq'], function (requirejs, linq) {
          * GIVEN a module configuration with the format {modules: [path to modules], names: [transformNames]}
          * WHEN you call transformLoader.moduleLoader
          * THEN it should callback with [{name: transformName, transform: loadedTransform}]
-         * 
+         *
          * @param  {Object}   moduleConfiguration the module configuration as described in the GIVEN.
          * @param  {Function} callback            callback(err, result)
          */
@@ -53,14 +53,18 @@ define(['requirejs', 'linq'], function (requirejs, linq) {
                 // Store off the arguments for use later.
                 transforms = arguments;
                 result = linq.from(moduleConfiguration.names)
-                    .zip(linq.from(transforms), 
+                    .zip(linq.from(transforms),
                         function (name, transform) {
                             return {
                                 name: name,
                                 transform: transform
                             };
                         }
-                    );
+                    )
+                    .aggregate({}, function (combination, transform) {
+                        combination[transform.name] = transform.transform;
+                        return combination;
+                    });
                 callback(null, result);
             });
         }
@@ -68,4 +72,3 @@ define(['requirejs', 'linq'], function (requirejs, linq) {
 
     return transformLoader;
 });
-

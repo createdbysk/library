@@ -38,10 +38,10 @@ describe('transform loader', function () {
                 .configureCommander(commander)
                 .transform('-t --transform', 'transform')
                 .parse([
-                    '--transform', 
+                    '--transform',
                     // Add a .js to the path to confirm that the extractor removes the .js
                     module1+'.js,'+module1Name,
-                    '--transform', 
+                    '--transform',
                     module2+','+module2Name
                 ]);
             expect(commander.transform.modules, [module1, module2]);
@@ -60,16 +60,10 @@ describe('transform loader', function () {
             module2 = 'module2';
             loadedModule1 = 'lmodule1';
             loadedModule2 = 'lmodule2';
-            expectedLoadedModules = [
-                {
-                    name: module1,
-                    transform: loadedModule1
-                },
-                {
-                    name: module2,
-                    transform: loadedModule2
-                }
-            ];
+            expectedLoadedModules = {
+                "module1": loadedModule1,
+                "module2": loadedModule2
+            };
             requirejs
                 .withArgs([module1, module2], sinon.match.typeOf('function'))
                 .callsArgWith(1, loadedModule1, loadedModule2);
@@ -77,10 +71,10 @@ describe('transform loader', function () {
                 {
                     names: [module1, module2],
                     modules: [module1, module2]
-                }, 
+                },
                 function (err, loadedModules) {
                     expect(err).to.not.be.ok();
-                    expect(loadedModules.toArray()).to.eql(expectedLoadedModules);
+                    expect(loadedModules).to.eql(expectedLoadedModules);
                     done();
                 }
             );

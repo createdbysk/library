@@ -46,8 +46,9 @@ line2
 
 # library/transformLoader
 ## Usage
-This module is designed to work with requirejs.
-var requirejs = require('requirejs');
+This module is designed to work with requirejs configured with library/configuredRequirejs.
+var requirejs;
+requirejs = require('library/configuredRequirejs');
 requirejs(['library/transformLoader'], function (transformLoader) {
     ... Use transformLoader
 });
@@ -89,4 +90,59 @@ define(['library/transformLoader'], function (transformLoader) {
          * (err, {transformName1: result1, transformName2: result2, ...})
 # library/jiraRest
 ## Usage
-UNDER CONSTRUCTION.
+This module is designed to work with requirejs configured with library/configuredRequirejs.
+var requirejs;
+requirejs = require('library/configuredRequirejs');
+requirejs(['library/jiraRest'], function (JiraRest) {
+    ... Use JiraRest
+});
+define(['library/jiraRest'], function (JiraRest) {
+    ... Use JiraRest
+});
+
+## Functions
+### Constructor
+    /**
+     * Use the JiraRest constructor to create an instance configured with the
+     * options passed to the constructor.
+     *
+     * The format of the options is
+     * {
+     *      baseUrl: <required url to the jira instance>
+     *      username: <optional username for the jira user>
+     *      password: <optional password for the jira user>
+     *      strictSSL: <optional flag that indicates whether to allow
+     *                  insecure access>
+     * }
+     *
+     *  @param options  -   The options to configure the jiraRest instance.
+     *
+     * GIVEN options of the format given above
+     * WHEN you call JiraRest(options)
+     * THEN it should return a jiraRest instance of the form
+     * {
+     *      search: <search function. See next section for details.>
+     * }
+
+### Functions in jiraRest instance
+#### jiraRest.search
+/**
+ * Use the search function to issue a search request to jira with the given
+ * query input and invoke the callback with the results returned from the search
+ * request.
+ *
+ * @param query -    A valid jira query in jql format. For example, project%3DSW
+ * @param callback - A function of the form (err, results), which this function
+ *                   will invoke with the response.
+ *
+ * GIVEN a jiraRest instance and a query in jql format
+ * WHEN you call jiraRest.search(query, callback)
+ * AND the call successfully returns results
+ * THEN it should invoke the callback with null for the error parameter
+ * AND the results for the results parameter.
+ *
+ * GIVEN a jiraRest instance and a query in jql format
+ * WHEN you call jiraRest.search(query, callback)
+ * AND the call fails with an error
+ * THEN it should invoke the callback with the error for the error parameter
+ * AND undefined for the results.

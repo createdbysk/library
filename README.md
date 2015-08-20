@@ -9,6 +9,23 @@ Use the integration_test directory to install the library and test it from a cli
 # library/test_utilities/requireInjector
 Provides requirejs injector support for tests.
 NOTE: This module depends on squirejs. It will NOT work if the client has squirejs already installed.
+Usage:
+var requireInjector;
+requireInjector = require('library/test_utilities/requireInjector');
+describe('my test', function () {
+    var unitUnderTest;
+    beforeEach(function (done) {
+        var injector,
+            mockDependency;
+        injector = requireInjector.createInjector();
+        mockDependency = { test: function () {} };
+        injector
+            .mock('dependency', mockDependency)
+            .require(['unitUnderTest'], function (theUnitUnderTest) {
+                unitUnderTest = theUnitUnderTest;
+            });
+    });
+});
 
 # library/streamEnumerableCreator
 Creates a linqjs compatible enumerable that iterates over lines in the given file descriptor.

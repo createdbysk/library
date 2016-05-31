@@ -1,6 +1,6 @@
 This repository implements libraries for use by other projects. Install it with
 ```
-npm install --save git+ssh://git@github.com:satvidh/library.git#0.0.1
+npm install --save git+ssh://git@github.com:satvidh/library.git
 ```
 
 # To test client perspective

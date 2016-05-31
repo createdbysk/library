@@ -41,11 +41,15 @@ define([
                     strictSSL: options.strictSSL
                 };
                 requestCallback = function (err, response, body) {
-                    if (!err && response.statusCode === 200) {
-                        var results;
-                        results = JSON.parse(body);
-                        callback(err, results);
+                    if (err) {
+                        callback(err);
                     }
+                    if (response.statusCode !== 200) {
+                        callback(JSON.stringify(response));
+                    }
+                    var results;
+                    results = JSON.parse(body);
+                    callback(err, results);
                 };
                 request(requestOptions, requestCallback);
             };
